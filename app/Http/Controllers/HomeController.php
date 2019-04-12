@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-	 public function index()
+	public function index()
     {
-    	$products = DB::table('products')->get();
+    	$products = Product::all();;
         return view('home', ['products' => $products]);
     }
 }

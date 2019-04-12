@@ -15,10 +15,10 @@
                               {{ $product->name }}
                             </div>
                             <div class="col-sm">
-                              prijs €{{ $product->price }},-
+                              €{{ $product->price }},- per stuk
                             </div>
                             <div class="col-sm">
-                                {{ Form::open(array('url' => 'foo/bar')) }}
+                                {{ Form::open(array('url' => '/cart')) }}
                                     {{ Form::number('amount', '1') }}
                                     {{ Form::submit('+')}}
                                 {{ Form::close() }}                                

@@ -15,5 +15,6 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/customer', 'CustomerController@index')->name('customer');
+Route::resource('customer', 'ShoppingCartController');
+Route::resource('cart', 'ShoppingCartController');
 
