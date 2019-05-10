@@ -20,6 +20,9 @@
                             <div class="col-sm">
                                 {{ Form::open(array('url' => '/cart')) }}
                                     {{ Form::number('amount', '1') }}
+                                    {{ Form::hidden('name', $product->name)}}
+                                    {{ Form::hidden('price', $product->price)}}
+                                    {{ Form::hidden('id', $product->id)}}
                                     {{ Form::submit('+')}}
                                 {{ Form::close() }}                                
                             </div>                

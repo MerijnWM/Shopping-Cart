@@ -4,23 +4,52 @@ namespace App;
 
 class ShoppingCart 
 {
-	public function add($product, $amount)
-	{
+	private $cart, $totalPrice;
 
+	public function add($name, $amount, $price, $id)
+	{
+		//if product is in cart, add to amount
+		for($count = 0; $count < count($this->cart); $count++){
+        
+            if($id == $this->cart[$count]['id']){ 
+            	$this->cart[$count]['amount'] += $amount;
+                return;
+            }
+        } 
+		$this->cart[] = ['name' => $name, 'amount' => $amount, 'price' => $price, 'id' => $id];
+		
 	}
 
-	public function delete($product)
+	public function changeProductAmount($product, $amount)
 	{
-
+		
 	}
 
-	public function calculateTotalPrice()
-	{
+	public function delete($id)
+	{    
+		for($count = 0; $count < count($this->cart); $count++){
+        
+            if($id == $this->cart[$count]['id']){               
+                unset($this->cart{$count});
+            }
+        } 
 
+        $this->cart = array_values($this->cart);
 	}
 
-	public function changeProductAmount($poduct, $amount)
+	public function getTotalPrice()
 	{
+		$this->totalPrice = 0;
 
+		foreach($this->cart as $product){
+			$this->totalPrice += $product['amount'] * $product['price'];
+		}
+
+		return $this->totalPrice;
+	}	
+
+	public function getCart()
+	{
+		return $this->cart;
 	}
 }
