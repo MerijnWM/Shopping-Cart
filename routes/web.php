@@ -17,4 +17,5 @@ Auth::routes();
 
 Route::resource('customer', 'CustomerController');
 Route::resource('cart', 'ShoppingCartController');
+Route::resource('category', 'CategoryController');
 

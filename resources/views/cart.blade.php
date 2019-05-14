@@ -9,7 +9,7 @@
 
                 <div class="card-body">
                     
-                    @if(count($cart) == 0)
+                    @if($cart->getTotalPrice() == 0)
 
                         <div class="row"> 
                             <div class="col-sm">
@@ -28,12 +28,11 @@
                                     € {{ $product['price'] }},- per stuk                          
                                 </div>
                                 <div class="col-2">
-                                    {{ Form::open(array('url' => '/cart', 'class' => 'form-row')) }}
-                                    {{ Form::number('amount', $product['amount']) }}
-                                    {{ Form::hidden('name', $product['name'])}}
-                                    {{ Form::hidden('price', $product['price'])}}
-                                    {{ Form::hidden('id', $product['id'])}}
-                                    {{ Form::submit('+')}}
+                                    {{ Form::open(array('url' => '/cart/' . $product['id'], 'class' => 'form-row')) }}
+                                    {{ Form::number('amount', $product['amount'], ['class' => 'form-control col-8']) }}
+                                    {{ Form::hidden('_method', 'PUT') }}
+                                    {{ Form::hidden('id', $product['id'])}}                                    
+                                    {{ Form::button('<i class="fas fa-check"></i>', array('class'=>'form-control col-4', 'type'=>'submit')) }}
                                     {{ Form::close() }}                                                               
                                 </div>                               
                                                                  

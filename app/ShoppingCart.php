@@ -20,9 +20,16 @@ class ShoppingCart
 		
 	}
 
-	public function changeProductAmount($product, $amount)
+	public function editProductAmount($id, $amount)
 	{
-		
+		for($count = 0; $count < count($this->cart); $count++){
+        
+            if($id == $this->cart[$count]['id']){               
+               $this->cart[$count]['amount'] = $amount;
+            }
+        } 
+
+        $this->cart = array_values($this->cart);
 	}
 
 	public function delete($id)
