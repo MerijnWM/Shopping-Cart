@@ -48,9 +48,12 @@ class ShoppingCart
 	{
 		$this->totalPrice = 0;
 
-		foreach($this->cart as $product){
-			$this->totalPrice += $product['amount'] * $product['price'];
-		}
+		if(empty($this->cart) == false){
+			
+			foreach($this->cart as $product){
+				$this->totalPrice += $product['amount'] * $product['price'];
+			}
+		}		
 
 		return $this->totalPrice;
 	}	

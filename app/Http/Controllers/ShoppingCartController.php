@@ -10,7 +10,13 @@ class ShoppingCartController extends Controller
 {
     public function index()
     {
-        $shoppingCart = Session::get('cart');        
+        if (session()->has('cart')) {
+
+            $shoppingCart = Session::get('cart');
+        }else{
+
+            $shoppingCart = new ShoppingCart;            
+        }         
 
         return view('cart' , ['cart' => $shoppingCart]);
     }

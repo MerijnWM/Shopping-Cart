@@ -27,16 +27,16 @@
                                 <div class="col-3">                                     
                                     € {{ $product['price'] }},- per stuk                          
                                 </div>
-                                <div class="col-2">
+                                <div class="col-3">
                                     {{ Form::open(array('url' => '/cart/' . $product['id'], 'class' => 'form-row')) }}
-                                    {{ Form::number('amount', $product['amount'], ['class' => 'form-control col-8']) }}
+                                    {{ Form::number('amount', $product['amount'], ['class' => 'form-control col-6']) }}
                                     {{ Form::hidden('_method', 'PUT') }}
                                     {{ Form::hidden('id', $product['id'])}}                                    
-                                    {{ Form::button('<i class="fas fa-check"></i>', array('class'=>'form-control col-4', 'type'=>'submit')) }}
+                                    {{ Form::button('bewerk', array('class'=>'btn-sm col-6', 'type'=>'submit')) }}
                                     {{ Form::close() }}                                                               
                                 </div>                               
                                                                  
-                                <div class="col-3">
+                                <div class="col-2">
                                     {{ Form::open(array('url' => 'cart/' . $product['id'], 'class' => 'float-right'))}}
                                         {{ Form::hidden('_method', 'DELETE') }}
                                         {{ Form::submit('verwijder', array('class' => 'btn-sm')) }}

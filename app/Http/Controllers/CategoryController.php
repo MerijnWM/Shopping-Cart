@@ -11,10 +11,10 @@ class CategoryController extends Controller
 {
 	public function show($category)
     {
-    	dd($category);
-		$products = Category::find(2)->products;
-    	dd($products);
-    	$products = Product::whereIn('id', '=',  $product_category->id)->all();
-        return view('home', ['products' => $products, 'active' => $category]);
+    	$categories = Category::where('name', '=', $category)->first();
+
+		$products = Category::find($categories->id)->products;	
+    	
+        return view('products', ['products' => $products, 'active' => $category]);
     }
 }
