@@ -44,7 +44,7 @@
                          <div class="col-sm-6">
                             <div class="card">
                                 <div class="card-body">                                             
-                                    <img class="card-img-top" src="{{url('img/'. $product->name .'.jpg')}}" >
+                                    <img class="card-img-top" src="{{url('img/'. $product->name .'.jpg')}}">
                                     <h5 class="card-title">Voorraad: {{$product->stock}}</h5>
                                     <div class="col-sm">
                                         {{ Form::open(array('url' => '/cart', 'class' => 'form-row')) }}
@@ -54,7 +54,7 @@
                                             {{ Form::hidden('id', $product->id)}}
                                             {{ Form::submit('+',['class' => 'form-control col-2'])}}
                                         {{ Form::close() }}                                
-                                    </div>  
+                                    </div>
                                 </div>
                             </div>
                         </div> 
@@ -67,8 +67,12 @@
                                     <p class="card-text">€{{ $product->price }},- per stuk</p>
                                 </div>
                             </div>
+                            @if(session()->has('message'))
+                                <div class="alert alert-success">
+                                    {{ session()->get('message') }}
+                                </div>
+                            @endif 
                         </div>  
-
                     </div>        
                 </div>
             </div>

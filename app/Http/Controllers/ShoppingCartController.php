@@ -34,15 +34,14 @@ class ShoppingCartController extends Controller
         $shoppingCart->add($_POST['name'], $_POST['amount'], $_POST['price'], $_POST['id']);        
         Session::put('cart', $shoppingCart);   
 
-        return redirect()->back();
+        return redirect()->back()->with('message', $_POST['amount'] .' Toegevoegd aan winkelwagen');;
     }
 
     public function update($id)
     {
         $shoppingCart = Session::get('cart');
      
-        $shoppingCart->editProductAmount($id, $_POST['amount']);
-        
+        $shoppingCart->editProductAmount($id, $_POST['amount']);        
         Session::put('cart', $shoppingCart); 
         
         return redirect()->back();
@@ -52,8 +51,7 @@ class ShoppingCartController extends Controller
     {   
         $shoppingCart = Session::get('cart');
      
-        $shoppingCart->delete($id);
-        
+        $shoppingCart->delete($id);        
         Session::put('cart', $shoppingCart); 
         
         return redirect()->back();         
