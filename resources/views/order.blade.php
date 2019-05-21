@@ -43,13 +43,28 @@
                                     {{ Form::close() }}                                                              
                                 </div>                
                             </div>
-                        @endforeach               
+                        @endforeach 
 
                     @endif
 
                 </div>
                 <div class="card-footer text-muted">
-                    Total :  € <? if($cart->getTotalPrice() != 0){echo $cart->getTotalPrice() . '<a href="'. url('/order/create'). '" class="btn btn-primary float-right">Bestel</a>';} else{echo $cart->getTotalPrice();} ?>,-                    
+                    <div class="row">                   
+                        <div class="col-3">
+                            Total :  € <? if(count($cart) != 0){echo $cart->getTotalPrice();} else{echo 0;} ?>,-
+                        </div>
+                        <div class="col-9 m-auto">
+                                {{ Form::open(array('url' => '/order', 'class' => 'form-row')) }}
+                                {{ Form::label('streetname', 'Straatnaam') }}
+                                {{ Form::text('streetname','', ['class' => 'form-control','required' => 'required']) }}
+                                {{ Form::label('housenumber', 'Huisnummer') }}
+                                {{ Form::number('housenumber','', ['class' =>'form-control','required' =>'required']) }}
+                                {{ Form::label('postalcode', 'Postcode') }}
+                                {{ Form::text('postalcode','', ['class' => 'form-control', 'required' => 'required']) }}
+                                {{ Form::button('Bevestigen', array('class'=>'btn btn-primary form-control', 'type'=>'submit')) }}
+                                {{ Form::close() }}                                                               
+                        </div> 
+                    </div>
                 </div>
             </div>
         </div>

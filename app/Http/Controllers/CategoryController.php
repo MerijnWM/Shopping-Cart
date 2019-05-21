@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Product;
-use App\ProductCategory;
 use App\Category;
 use Illuminate\Http\Request;
 

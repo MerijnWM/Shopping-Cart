@@ -19,4 +19,5 @@ Route::resource('customer', 'CustomerController');
 Route::resource('cart', 'ShoppingCartController');
 Route::resource('category', 'CategoryController');
 Route::resource('product', 'ProductController');
+Route::resource('order', 'OrderController');
 
