@@ -13,14 +13,15 @@ class CreateOrderedProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ordered_products', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('order_id');
+        Schema::create('order_product', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('product_id');
+            $table->integer('order_id');
+            $table->integer('amount');
             $table->timestamps();         
         });
 
-        Schema::table('ordered_products', function($table) {
+        Schema::table('order_product', function($table) {
             $table->foreign('product_id')->references('id')->on('products');
             $table->foreign('order_id')->references('id')->on('orders');  
         });
@@ -33,6 +34,6 @@ class CreateOrderedProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ordered_products');
+        Schema::dropIfExists('order_product');
     }
 }

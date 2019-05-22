@@ -39,6 +39,11 @@
                 </div>
                 <div class="card-body">
 
+                    @if (session('message'))
+                        <div class="alert alert-success">
+                            {{ session('message') }}
+                        </div>
+                    @endif
                     @if(count($products) != 0 )
                         <div class="row">      
 

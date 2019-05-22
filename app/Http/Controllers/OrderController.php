@@ -14,23 +14,44 @@ class OrderController extends Controller
 		$this->middleware('auth');
 	}
 
+    public function index()
+    {
+        $orders = Order::all();
+        return view('order/index', ['orders' => $orders]);
+    }
+
     public function create(Request $request)
     {
-    	$request->user()->authorizeRoles(['Customer', 'Admin']);
-
     	$shoppingCart = Session::get('cart');
-    	return view('order', ['cart' => $shoppingCart ]); 
+    	return view('order/create', ['cart' => $shoppingCart ]); 
+    }
+
+    public function show($order_id)
+    {
+        $order = Order::where('id', '=', $order_id)->first();
+        $products = Order::where('id', '=', $order_id)->first()->products;
+
+        return view('order/view', ['order' => $order, 'products' => $products]);
     }
 
     public function store(Request $request)
     {
     	$order = new Order;
-    	
+
         $order->user_id = $request->user()->id;
         $order->streetname = $request->streetname;
         $order->housenumber = $request->housenumber;
-        $order->postalcode = $request->postalcode;
+        $order->postalcode = $request->postalcode; 
+        $order->status = 'processing'; 
+        
+        $order->save() ;
+        
+        $shoppingCart = Session::get('cart');         
+        foreach($shoppingCart->getCart() as $product){
+            $order->Products()->attach($product['id'], ['amount'=> $product['amount'] ]);                      
+        }   
 
-        $order->save();
+        session()->forget('cart');
+        return redirect()->route('home')->with('message', 'Uw order is succesvol ontvangen');
     }
 }
