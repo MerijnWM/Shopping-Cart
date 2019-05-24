@@ -22,7 +22,7 @@
                             @foreach($orders as $order)                            
                             	
                             		<tbody>  
-                            			<td>{{$order->created_at->format('H:i d-m-Y')}}</td>                          			
+                            			<td>{{$order->created_at->format('d-m-Y')}}</td>                          			
                             			<td>{{$order->streetname . ' ' . $order->housenumber}}</td>  
                             			<td>{{$order->postalcode}}</td>          			
                             			<td>{{$order->status}}</td>
