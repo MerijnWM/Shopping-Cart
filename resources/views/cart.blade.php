@@ -22,7 +22,7 @@
                          @foreach($cart->getCart() as $product)
                             <div class="row">                                                           
                                 <div class="col-4">
-                                    {{ $product['name'] }}
+                                    <a class="btn" href="{{url('/product/'.$product['id'])}}">{{ $product['name'] }}</a>
                                 </div> 
                                 <div class="col-3">                                     
                                     € {{ $product['price'] }},- per stuk                          

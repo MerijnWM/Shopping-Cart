@@ -48,7 +48,7 @@
                                     <h5 class="card-title">Voorraad: {{$product->stock}}</h5>
                                     <div class="col-sm">
                                         {{ Form::open(array('url' => '/cart', 'class' => 'form-row')) }}
-                                            {{ Form::number('amount', '1',['class' => 'form-control col-8']) }}
+                                            {{ Form::number('amount', '1', ['class' => 'form-control col-8', 'max' => $product->stock ]) }}
                                             {{ Form::hidden('name', $product->name)}}
                                             {{ Form::hidden('price', $product->price)}}
                                             {{ Form::hidden('id', $product->id)}}

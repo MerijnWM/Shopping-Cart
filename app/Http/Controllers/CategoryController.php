@@ -13,6 +13,6 @@ class CategoryController extends Controller
 
 		$products = Category::find($categories->id)->products;	
     	
-        return view('products', ['products' => $products, 'active' => $category]);
+        return view('product/index', ['products' => $products, 'active' => $category]);
     }
 }
