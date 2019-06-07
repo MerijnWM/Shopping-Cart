@@ -14,9 +14,10 @@ class OrderController extends Controller
 		$this->middleware('auth');
 	}
 
-    public function index()
+    public function index(Request $request)
     {
-        $orders = Order::all();
+        $orders = Order::where('user_id', $request->user()->id)->get();       
+        
         return view('order/index', ['orders' => $orders]);
     }
 
