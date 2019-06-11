@@ -3,56 +3,39 @@
 namespace App\Http\Controllers;
 
 use App\shoppingCart;
-use Session;
 use Illuminate\Http\Request;
 
 class ShoppingCartController extends Controller
 {
-    public function index()
+    private $shoppingCart;
+
+    public function __construct()
     {
-        if (session()->has('cart')) {
+        $this->shoppingCart = new ShoppingCart; 
+    }
 
-            $shoppingCart = Session::get('cart');
-        }else{
-
-            $shoppingCart = new ShoppingCart;            
-        }         
-
-        return view('cart' , ['cart' => $shoppingCart]);
+    public function index(request $request)
+    {       
+        return view('cart' , ['cart' => $this->shoppingCart->getCart(), 'totalPrice' => $this->shoppingCart->getTotalPrice()]);
     }
 
     public function store()
-    {      
-        if (session()->has('cart')) {
-
-            $shoppingCart = Session::get('cart');
-        }else{
-
-            $shoppingCart = new ShoppingCart;            
-        }  
-
-        $shoppingCart->add($_POST['name'], $_POST['amount'], $_POST['price'], $_POST['id']);        
-        Session::put('cart', $shoppingCart);   
+    { 
+        $this->shoppingCart->add($_POST['name'], $_POST['amount'], $_POST['price'], $_POST['id']);        
 
         return redirect()->back()->with('message', $_POST['amount'] .' Toegevoegd aan winkelwagen');;
     }
 
     public function update($id)
-    {
-        $shoppingCart = Session::get('cart');
-     
-        $shoppingCart->editProductAmount($id, $_POST['amount']);        
-        Session::put('cart', $shoppingCart); 
+    {       
+        $this->shoppingCart->editProductAmount($id, $_POST['amount']);        
         
         return redirect()->back();
     }
 
     public function destroy($id)
     {   
-        $shoppingCart = Session::get('cart');
-     
-        $shoppingCart->delete($id);        
-        Session::put('cart', $shoppingCart); 
+        $this->shoppingCart->delete($id);        
         
         return redirect()->back();         
     }

@@ -9,7 +9,7 @@
 
                 <div class="card-body">
                     
-                    @if($cart->getTotalPrice() == 0)
+                    @if($totalPrice == 0)
 
                         <div class="row"> 
                             <div class="col-sm">
@@ -19,7 +19,7 @@
 
                     @else
 
-                         @foreach($cart->getCart() as $product)
+                         @foreach($cart as $product)
                             <div class="row">                                                           
                                 <div class="col-4">
                                     <a class="btn" href="{{url('/product/'.$product['id'])}}">{{ $product['name'] }}</a>
@@ -49,7 +49,7 @@
 
                 </div>
                 <div class="card-footer text-muted">
-                    Total :  € <? if($cart->getTotalPrice() != 0){echo $cart->getTotalPrice() . '<a href="'. url('/order/create'). '" class="btn btn-primary float-right">Bestel</a>';} else{echo $cart->getTotalPrice();} ?>,-                    
+                    Total :  € <? if($totalPrice != 0){echo $totalPrice . '<a href="'. url('/order/create'). '" class="btn btn-primary float-right">Bestel</a>';} else{echo $totalPrice;} ?>,-                    
                 </div>
             </div>
         </div>
